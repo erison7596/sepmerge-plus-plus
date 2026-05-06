@@ -18,7 +18,6 @@ import static org.junit.jupiter.api.Assumptions.assumeTrue;
  *   4.5.1 - Tratamento de Byte Order Mark (BOM)
  *   4.5.2 - Reversibilidade em Ponto Fixo
  *   4.5.3 - Preservacao de Quebras de Linha na Agregacao
- *
  * Esses testes garantem que as correcoes especificadas no artigo
  * permanecem em vigor e nao regridem em alteracoes futuras.
  */
