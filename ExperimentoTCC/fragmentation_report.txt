@@ -1,0 +1,54 @@
+======================================================================
+ANALISE DE FRAGMENTACAO — SepMerge++ vs diff3
+======================================================================
+
+SUMARIO
+----------------------------------------------------------------------
+Total de cenarios analisados:        2816
+  Ambos resolveram (limpos):          1215 ( 43.1%)
+  Equivalentes (mesmo n e footprint):   875 ( 31.1%)
+  Ganho real (sep <= diff3):           371 ( 13.2%)
+  Fragmentacao (mais blocos, area =):   280 (  9.9%)
+  PIORA REAL (mais blocos E area):      75 (  2.7%)
+
+ANALISE DOS CASOS COM MAIS BLOCOS NO SEPMERGE
+----------------------------------------------------------------------
+Total: 355 cenarios em que SepMerge++ tem MAIS blocos que diff3
+  Dos quais sao fragmentacao (area equivalente): 280 ( 78.9%)
+  Dos quais sao piora real (mais area):          75 ( 21.1%)
+
+ESTATISTICAS DOS CASOS DE FRAGMENTACAO
+----------------------------------------------------------------------
+Δ blocos (sep - diff3):  min=0, max=43, media=1.35
+Δ footprint (sep - diff3): min=-2107, max=9, media=-22.73
+(footprint negativo = SepMerge cobre MENOS linhas; 0 = mesma area; positivo = mais area)
+
+EXEMPLOS DE PIORA REAL (top 10 por delta de footprint)
+----------------------------------------------------------------------
+  haskell/ghc/c34f0c8d8e haddock-api/src/Haddock/Interface/Create.hs        blocos 93->161  footprint 1252->1297
+  go/traefik/f2b68f29a pkg/provider/kubernetes/crd/generated/clientset/ve blocos 5->36  footprint 146->165
+  go/traefik/f2b68f29a pkg/provider/kubernetes/crd/generated/clientset/ve blocos 5->36  footprint 146->165
+  go/traefik/f2b68f29a pkg/provider/kubernetes/crd/generated/clientset/ve blocos 5->36  footprint 146->165
+  go/traefik/f2b68f29a pkg/provider/kubernetes/crd/generated/clientset/ve blocos 5->36  footprint 150->166
+  go/traefik/f2b68f29a pkg/provider/kubernetes/crd/generated/clientset/ve blocos 5->36  footprint 150->166
+  go/traefik/f2b68f29a pkg/provider/kubernetes/crd/generated/clientset/ve blocos 5->36  footprint 150->166
+  go/traefik/f2b68f29a pkg/provider/kubernetes/crd/generated/clientset/ve blocos 5->36  footprint 150->166
+  go/traefik/f2b68f29a pkg/provider/kubernetes/crd/generated/clientset/ve blocos 5->36  footprint 150->166
+  go/traefik/f2b68f29a pkg/provider/kubernetes/crd/generated/clientset/ve blocos 5->36  footprint 150->166
+
+DISTRIBUICAO POR LINGUAGEM
+----------------------------------------------------------------------
+Lingua        Limpo    Equiv    Ganho   Fragm.    Piora
+csharp           63      193       69       45        2
+go              906      585      241      122       45
+haskell         246       97       61      113       28
+
+======================================================================
+CONCLUSAO
+======================================================================
+Em 2741/2816 cenarios (97.34%), SepMerge++ NAO piora vs diff3 em area conflituosa.
+Em 75 cenarios (2.66%), SepMerge++ tem area conflituosa MAIOR que diff3.
+
+Esta analise valida que a aparente 'piora' em numero de blocos
+se deve principalmente a fragmentacao (granularidade), nao a
+aumento real da area conflituosa.

@@ -224,6 +224,34 @@ Nenhuma outra classe precisa ser tocada.
 
 ---
 
+## 🧪 Reproduzir o experimento (avaliação empírica)
+
+Toda a avaliação empírica do TCC — mineração dos 2.816 cenários de 19 projetos
+reais, execução das três ferramentas (`diff3`, CSDiff e SepMerge++) e análise
+estatística (incluindo a análise de *footprint*) — está documentada e
+automatizada por scripts na pasta **`ExperimentoTCC/`**, que tem seu próprio
+`README.md` explicando o pipeline passo a passo.
+
+Resumo do fluxo:
+
+```bash
+# 1. compile a ferramenta e leve o jar para a pasta do experimento
+mvn clean package
+cp target/sepmerge.jar ExperimentoTCC/sepmerge.jar
+
+cd ExperimentoTCC
+bash    01_extract_scenarios.sh        # minera os cenários dos repositórios
+bash    02_run_tools.sh                # roda as 3 ferramentas -> results.csv
+python3 03_aggregate.py results.csv    # Tabelas 2-4 do artigo
+python3 04_fragmentation_analysis.py results.csv  # Tabelas 6-7 (footprint)
+```
+
+Para apenas **conferir os números** sem reminerar os projetos, rode os passos 3
+e 4 sobre o `results.csv` já incluído. Detalhes, pré-requisitos e resultados
+esperados estão em `ExperimentoTCC/README.md`.
+
+---
+
 ## 📁 Estrutura do projeto
 
 ```

@@ -1,0 +1,33 @@
+# ============================================================
+#  Artefatos pesados / gerados — NÃO versionar
+# ============================================================
+
+# Repositórios clonados pelo 01_extract_scenarios.sh (gigabytes)
+repos/
+
+# Dataset de cenários extraídos (base/left/right/merged de cada cenário).
+# É grande e pode ser regenerado rodando 01_extract_scenarios.sh.
+dataset/
+
+# Saídas intermediárias por cenário do 02_run_tools.sh
+results/
+
+# Binário da ferramenta — gerar com `mvn package` em ../sepmerge-polyglot
+sepmerge.jar
+*.jar
+
+# ============================================================
+#  O QUE FICA VERSIONADO (não ignorado):
+#   - 01_extract_scenarios.sh, 02_run_tools.sh
+#   - 03_aggregate.py, 04_fragmentation_analysis.py
+#   - results.csv            (métricas finais dos 2.816 cenários)
+#   - fragmentation_report.txt
+#   - README.md
+# ============================================================
+
+# Temporários e arquivos de sistema
+*.tmp
+*.log
+.DS_Store
+Thumbs.db
+desktop.ini

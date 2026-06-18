@@ -1,4 +1,26 @@
+# Build / compilação
 target/
+out/
+build/
+*.class
+*.jar
+
+# IDEs
 .idea/
 *.iml
-*.class
+*.ipr
+*.iws
+.vscode/
+.settings/
+.project
+.classpath
+
+# Logs e temporários
+*.log
+*.tmp
+*.bak
+
+# Arquivos de sistema operacional
+.DS_Store
+Thumbs.db
+desktop.ini
